@@ -3,12 +3,20 @@
     "maps": [
         {
             "name": "PlayerControls",
-            "id": "e3fc0bcf-642b-4bc3-992b-ec11d8b9e6ec",
+            "id": "3e2a9666-d8ac-4b58-bac4-baa9ceafa5e7",
             "actions": [
                 {
                     "name": "Move",
                     "type": "PassThrough",
-                    "id": "6d4121c8-234b-42ef-b725-ab278cb1f0ae",
+                    "id": "9a194ffe-0489-4417-a2f8-8ca1e4e24335",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "17356606-ed32-4ccc-867a-398be0eb8de8",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -16,16 +24,16 @@
                 {
                     "name": "Fire",
                     "type": "Button",
-                    "id": "c3082dde-6871-429d-81ce-dca0757b8e94",
+                    "id": "85998e09-8956-4d42-9a7b-19b7b5aab23e",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": ""
                 }
             ],
             "bindings": [
                 {
-                    "name": "ZQSD",
-                    "id": "faac2c43-34f0-47d4-a29a-78919b228f76",
+                    "name": "WASD",
+                    "id": "faf88abd-de73-4910-83e9-9b3dfe9c2833",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -36,55 +44,99 @@
                 },
                 {
                     "name": "up",
-                    "id": "d261dcca-b154-4aab-9717-fac556fb27ee",
-                    "path": "<Keyboard>/z",
+                    "id": "8ff7e8e9-5008-44c8-84cb-a0dae2741139",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "d12ce14b-b9cb-49bd-af52-0f66a3946f71",
+                    "id": "36337cc7-4431-46ba-9595-5d5c735701c3",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "aabbb119-30b6-4334-9e3b-0dcfbd28accf",
-                    "path": "<Keyboard>/q",
+                    "id": "8afd0fb7-86ad-4d8b-83a3-e5b0df290727",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "0b6fa2dd-daf4-42ce-85e2-fee1324c4c5c",
+                    "id": "0735fd6a-c016-4b31-804a-c18cb02a275d",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "1d8ce231-ee06-40cb-89ce-be1ba708f8ee",
+                    "id": "198f8d44-f7a9-4e56-a111-25b4ab32c6c2",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a44232ec-2616-4ab5-b611-06f4d4b046bf",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eeed0dad-2ee5-4a8b-8ca8-42bbabccb49e",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "049b2ef7-c335-40b6-a372-02a7020b5169",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4438e136-4511-4df1-ac12-0f63e8d93d44",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -92,5 +144,33 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Keyboard&Mouse",
+            "bindingGroup": "Keyboard&Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }
