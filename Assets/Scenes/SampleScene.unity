@@ -395,6 +395,7 @@ MonoBehaviour:
   m_maxSpeed: 5
   m_accelaration: 3
   m_rotationSpeed: 34
+  m_changeControls: 0
   m_head: {fileID: 171170781}
 --- !u!114 &411842928
 MonoBehaviour:
@@ -500,6 +501,36 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 85998e09-8956-4d42-9a7b-19b7b5aab23e
     m_ActionName: PlayerControls/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 411842927}
+        m_MethodName: Move2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9e2c1245-afed-401d-be5a-396e3a1e0596
+    m_ActionName: PlayerControls/Move2[/Keyboard/s,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 411842927}
+        m_MethodName: Rotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 99f0977d-5690-4e6a-a0ab-f792de6bc6a0
+    m_ActionName: PlayerControls/Rotate[/Keyboard/a,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls

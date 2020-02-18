@@ -9,11 +9,15 @@ public class PlayerController : MonoBehaviour
     // Input values
     Vector2 m_moveInput;
     Vector2 m_lookInput;
+    float m_move2Input;
+    float m_rotateInput;
 
     public float m_maxSpeed = 1;
     public float m_accelaration = 1;
     public float m_rotationSpeed = 1;
     private float m_currentSpeed = 0;
+
+    public bool m_changeControls = false;
 
     public GameObject m_head;
 
@@ -29,14 +33,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (m_changeControls) {
+            Move2();
+        }
+        else {
+            Move();
+        }
         Look();
     }
 
-    #region Movement
+    #region Cardinal Movement
 
     void Move() {
-        Vector3 direction = new Vector3(m_moveInput.x, 0, m_moveInput.y); // moveInput is already normalized
+        Vector3 direction = new Vector3(m_moveInput.x, 0, m_moveInput.y);
 
         if (direction == Vector3.zero) {
             m_currentSpeed = 0; // Player stopped
@@ -80,6 +89,28 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    #region Tank Movement
+
+    void Move2() {
+        // Increase speed if not rotating
+        float maxPossibleSpeed = m_maxSpeed * Mathf.Abs(m_move2Input);
+        if (Mathf.Abs(m_rotateInput) < 10e-2 && m_currentSpeed < maxPossibleSpeed) {
+            m_currentSpeed += m_accelaration * Time.deltaTime;
+        }
+        m_currentSpeed = Mathf.Min(m_currentSpeed, maxPossibleSpeed); // speed can't be higher than max
+
+        Vector3 forward = m_move2Input > 0 ? transform.forward : transform.forward * -1;
+        Vector3 movement = forward * m_currentSpeed * Time.deltaTime;
+
+        Vector3 rotation = Vector3.up * m_rotateInput * m_rotationSpeed * Time.deltaTime;
+        
+        // Apply
+        m_rb.MovePosition(transform.position + movement);
+        m_rb.MoveRotation(transform.rotation * Quaternion.Euler(rotation));
+    }
+
+    #endregion
+
     #region Input Callback
 
     public void Move(InputAction.CallbackContext context) {
@@ -92,6 +123,14 @@ public class PlayerController : MonoBehaviour
 
     public void Fire(InputAction.CallbackContext context) {
         Debug.Log("Try to fire, but this action is not implemented!");
+    }
+
+    public void Move2(InputAction.CallbackContext context) {
+        m_move2Input = context.ReadValue<float>();
+    }
+
+    public void Rotate(InputAction.CallbackContext context) {
+        m_rotateInput = context.ReadValue<float>();
     }
 
     public void ControlChanged(PlayerInput input) {
