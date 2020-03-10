@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float m_rotationSpeed = 1;
 
     Rigidbody m_rb;
+    Vector3 m_slide_movement = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -30,19 +31,32 @@ public class PlayerController : MonoBehaviour
         Rotate();
     }
 
-    #region Cardinal Movement
+    #region Movement
 
     void Move() {
         Vector3 movement = transform.forward * m_moveInput * m_maxSpeed * Time.deltaTime;
 
-        m_rb.MovePosition(transform.position + movement);
+        m_rb.MovePosition(transform.position + movement + m_slide_movement);
+        m_slide_movement = Vector3.zero;
     }
+
 
     void Rotate() {
         int direction = m_moveInput >= 0 ? 1 : -1;
         Vector3 rotation = Vector3.up * direction * m_rotateInput * m_rotationSpeed * Time.deltaTime;
 
         m_rb.MoveRotation(transform.rotation * Quaternion.Euler(rotation));
+    }
+
+
+    /// <summary>
+    /// Make the attached gameobject slide in a direction as of it was pushed by an external force
+    /// </summary>
+    /// <param name="direction">the direction of the force</param>
+    /// <param name="strength">the strength of the force</param>
+    public void Slide(Vector3 direction, float strength) {
+        Vector3 movement = direction * strength * Time.deltaTime;
+        m_slide_movement += movement;
     }
 
     #endregion

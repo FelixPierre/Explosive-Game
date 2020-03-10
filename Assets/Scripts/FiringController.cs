@@ -5,10 +5,17 @@ using UnityEngine.InputSystem;
 
 public class FiringController : MonoBehaviour
 {
+    [Header("Normal shot")]
     public Transform m_firePoint;
     public List<Projectile> m_projectiles;
 
+    [Header("Special shot")]
+    public Transform m_spFirePoint;
+    public List<Special> m_specials;
+
     private bool m_isFiring = false;
+    private bool m_isFiringSpecial = false;
+    private float m_specialEndTime = 0;
     private Projectile m_currentProjectile;
     private float m_nextTimeToFire = 0;
 
@@ -21,7 +28,10 @@ public class FiringController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_isFiring) {
+        if (m_isFiringSpecial) {
+            ShootSpecial();
+        }
+        else if (m_isFiring && Time.time > m_specialEndTime) {
             Shoot();
         }
     }
@@ -39,14 +49,35 @@ public class FiringController : MonoBehaviour
         Destroy(p.gameObject, 3);
     }
 
+    void ShootSpecial() {
+        Special spe = m_specials[0];
+        m_specialEndTime = Time.time + spe.CastDuration;
+        m_isFiringSpecial = false;
+
+        SpawnSpecial(m_specials[0]);
+    }
+
+    void SpawnSpecial(Special special) {
+        var spe = Instantiate(special, m_firePoint);
+        spe.transform.position = m_firePoint.position;
+
+        spe.Caster = gameObject;
+    }
+
     #region Input Callback
 
     public void Fire(InputAction.CallbackContext context) {
         if (context.started) {
             m_isFiring = true;
         }
-        if (context.canceled) {
+        else if (context.canceled) {
             m_isFiring = false;
+        }
+    }
+
+    public void Special(InputAction.CallbackContext context) {
+        if (context.started) {
+            m_isFiringSpecial = true;
         }
     }
 
