@@ -11,14 +11,12 @@ public class RotateToTarget : MonoBehaviour
     private Plane rPlane;
 
     private void Awake() {
-        if (transform.parent == null)
-            rAxis = Vector3.up;
-        else
-            rAxis = transform.parent.up;
-        rPlane = new Plane(rAxis, transform.position);
     }
 
     private void LateUpdate() {
+        rAxis = transform.parent ? transform.parent.up : Vector3.up;
+        rPlane = new Plane(rAxis, transform.position);
+
         Vector3 leg = rPlane.ClosestPointOnPlane(transform.position + transform.up) - transform.position;
         Vector3 goal = rPlane.ClosestPointOnPlane(target.position) - transform.position;
         float angle = Vector3.SignedAngle(leg, goal, rAxis);

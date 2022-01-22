@@ -192,7 +192,7 @@ MonoBehaviour:
   heightDelta: 0.3
   collisionMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1
 --- !u!1 &6835784909004192429
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +425,7 @@ MonoBehaviour:
   heightDelta: 0.3
   collisionMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1
 --- !u!1 &6835784909560404421
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +864,7 @@ MonoBehaviour:
   heightDelta: 0.3
   collisionMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1
 --- !u!1 &6835784910021253210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,7 +1097,7 @@ MonoBehaviour:
   heightDelta: 0.3
   collisionMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1
 --- !u!1001 &6835784909065240234
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1133,7 +1133,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 16414050974aff44bb6fd5ea3e0930e5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.176
+      value: 0.108
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16414050974aff44bb6fd5ea3e0930e5,
         type: 3}
